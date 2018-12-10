@@ -1,0 +1,27 @@
+@Author: Yifan Mei & Siyuan Ji
+
+In this folder, we have the following files:
+#######################
+partner.txt: list the authors of this project
+#######################
+build_spec_repr.h: the header of build_spec_repr.c. It defines the methods used in build_spec_repr and also define a data structure, GraphNode. Inside the GraphNode structure, we want to store: The name of the node. The children of the node, which is a list of children nodes. Plus children number and children capacity. The commands of the node, and its total number and its capacity. Number of parents the node has. Whether the node is visited while building the subgraph. Whether the node is visited while detecting circle in the whole graph. Whether the node is a target in the makefile. Whether the target is a file.
+---------------------------------------------------
+build_spec_repr.c: define how to create a GraphNode, how to add children to the GraphNode, how to add commands to the GraphNode, and how to print everything to the GraphNode.(This only works in the debug mode.)
+#######################
+build_spec_graph.h: this is the header of build_spec_graph.c. It defines the methods going to be used in the c file and a new data structure, graph. Inside the data structure of graph, there are a list of GraphNodes, the number of nodes inside the graph, called nodereal, and the capacity of the graph, called nodemalloc.
+---------------------------------------------------
+build_spec_graph.c: define how to create a graph. How to add a initialized GraphNode given its name to a graph. How to check whether the GraphNode given a name has already exist in the graph. If exists, do nothing. If not exists, add the GraphNode. How to get a GraphNode by its name. How to add an already existed GraphNode to the graph. How to detect whether the GraphNode, instead of its name exists in the graph.
+#######################
+text_parsing.h: include the methods in the corresponding c file
+text_parsing.c: include the methods of reading the contents inside the makefile and target parse and command parse seperately
+#######################
+topologicalsort.h: this is the header of the corresponding c file. Inside this file, it definds the methods and define a new data structure nodequeue which is going to be used in the BFS search method when getting the subgraph of the total graph and detecting the circle of the graph.
+---------------------------------------------------
+topologicalsort.c: It includes methods: How to add a GraphNode into the nodequeue, called enqueue. How to remove a GraphNode and get the removed GraphNode, called dequeue. How to topologicalsort the given graph. If the graph is DAG, it will return the post-order traverse output of the nodes of the whole graph. If there exists circle in the graph, it will return a graph without any GraphNode inside. How to get the node names that is inside original graph but not in the new graph. How to get subgraph which only include family members of a startnode. If the start node is not assigned, take the first target as the start node.
+#######################
+proc_creation_proc_exe.h: define the methods in the corresponding c file. 
+proc_creation_proc_exe.c: traverse the output of post-order traverse nodes, and execute the commands of them. For each graph node, compare it with its children. Define whether execute the commands or not.
+#######################
+main.c: this is to execute all other .c and .h files together.
+#######################
+Makefile: this is to write all .c and .h files together and compile them all so that in total we can get a 537make
