@@ -2,8 +2,6 @@
 
 In this folder, we have the following files:
 #######################
-partner.txt: list the authors of this project
-#######################
 build_spec_repr.h: the header of build_spec_repr.c. It defines the methods used in build_spec_repr and also define a data structure, GraphNode. Inside the GraphNode structure, we want to store: The name of the node. The children of the node, which is a list of children nodes. Plus children number and children capacity. The commands of the node, and its total number and its capacity. Number of parents the node has. Whether the node is visited while building the subgraph. Whether the node is visited while detecting circle in the whole graph. Whether the node is a target in the makefile. Whether the target is a file.
 ---------------------------------------------------
 build_spec_repr.c: define how to create a GraphNode, how to add children to the GraphNode, how to add commands to the GraphNode, and how to print everything to the GraphNode.(This only works in the debug mode.)
@@ -25,3 +23,7 @@ proc_creation_proc_exe.c: traverse the output of post-order traverse nodes, and 
 main.c: this is to execute all other .c and .h files together.
 #######################
 Makefile: this is to write all .c and .h files together and compile them all so that in total we can get a 537make
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Notice that after getting talked with professor, we agree that our topological method of compiling commands is not quite user friendly. The level order traverse failed to show the dependence between all dependencies. In this way, it is better to use post order traverse to compile all dependencies
